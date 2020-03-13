@@ -3,15 +3,20 @@ import java.util.HashMap;
 public class Scope <N, V> {
 	
 	  //Declaración de HashMap 
-	  HashMap<String, String> Scope = new HashMap<String, String>();
+	 private HashMap<N, V> mapScope;
 	  
-	  //N para nombre que se le asignara al valor y V para el valor que contiene ese nombre
-	  public void add(String N, String V) {
-		  
+	 
+	  public Scope() {
+		this.mapScope = mapScope = new HashMap<N, V>();
+	}
+
+	//N para nombre que se le asignara al valor y V para el valor que contiene ese nombre
+	  public void add(N nombre, V valor) {
+		 mapScope.put(nombre, valor);
 	  }
 	  
 	  //Devolver valor segun la llave
-	  public String getValue(String N){
-		  return Scope.get(N);
+	  public N getValue(N nombre){
+		  return (N) mapScope.get(nombre);
 	  }
 }
