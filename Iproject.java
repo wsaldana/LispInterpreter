@@ -62,7 +62,7 @@ public class Iproject {
 		                String line = input.nextLine();
 		                textArea.append(line + "\n");
 		            }
-		            JOptionPane.showMessageDialog(null, "El archivo se ha cargado exitósamente:)");
+		            JOptionPane.showMessageDialog(null, "El archivo se ha cargado exitï¿½samente:)");
 		            //System.out.println(textArea.getText());
 		            //("\n")
 		            input.close();
