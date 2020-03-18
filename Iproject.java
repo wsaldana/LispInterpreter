@@ -77,7 +77,7 @@ public class Iproject {
 		btnCor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String textoTotal = textArea.getText();				
-				String progra = textoTotal.replaceAll("\n"," ").replaceAll("\r"," ");
+				String progra = textoTotal.replaceAll("\n"," ").replaceAll("\r"," ").replaceAll("\t", " ").replaceAll("  ", " ").replaceAll("   ", " ");
 				System.out.println(progra);
 			}
 		});
