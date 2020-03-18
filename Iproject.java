@@ -2,15 +2,12 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import java.awt.Font;
-import java.awt.List;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
@@ -80,13 +77,8 @@ public class Iproject {
 		btnCor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String textoTotal = textArea.getText();				
-				String[] Progra = textoTotal.split("\n");
-				String line="";
-				for(int i=0; i<Progra.length;i++) {
-				System.out.println(Progra[i]);
-				line = line + Progra[i] + " " ;
-				}
-				System.out.println(line);
+				String progra = textoTotal.replaceAll("\n"," ").replaceAll("\r"," ");
+				System.out.println(progra);
 			}
 		});
 		btnCor.setBounds(526, 386, 97, 25);
@@ -98,8 +90,7 @@ public class Iproject {
 				try {
 					String texto = textArea.getText();				
 					String[] Code = texto.split("\n");
-					String linea="";
-					String contenido="";
+					String contenido = "";
 					
 		            String ruta = "C:\\Users\\Javier Cotto\\Desktop\\UVG Trabajos\\3er Semestre\\Estructura de datos\\guardar.txt";
 		            for(int i=0; i<Code.length;i++) {

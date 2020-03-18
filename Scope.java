@@ -7,7 +7,7 @@ public class Scope <N, V> {
 	  
 	 
 	  public Scope() {
-		this.mapScope = mapScope = new HashMap<N, V>();
+		this.mapScope = new HashMap<N, V>();
 	}
 
 	//N para nombre que se le asignara al valor y V para el valor que contiene ese nombre
@@ -16,13 +16,14 @@ public class Scope <N, V> {
 	  }
 	// Se agrega un nombre de tipo N
 	public void add(N nombre) {
-		mapScope.put(N);
+		mapScope.put(nombre, null);
 	}
 	  
 	  //Devolver valor segun la llave
-	  public N getValue(N nombre){
-		  return (N) mapScope.get(nombre);
+	  public V getValue(N nombre){
+		  return mapScope.get(nombre);
 	  }
+
 	// Comparacion entre dos valores distintos de tipo N
 	public boolean equality(N first, N second){
 	if (first.equals(second)){
