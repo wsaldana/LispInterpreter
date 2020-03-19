@@ -73,8 +73,8 @@ public class myVector<E> implements Stack<E>{
      * Almacena el primer valor de la lista y despues lo elimina
      */
     public E shift(){
-    	E value = data.get(size() - (size()-1));
-		data.remove(size() - (size()-1));
+    	E value = data.get(0);
+		data.remove(0);
 		return value;
     }
 }
