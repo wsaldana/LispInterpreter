@@ -60,4 +60,11 @@ public class myVector<E> implements Stack<E>{
     public boolean empty(){
         return !(data.size() > 0);
     }
+
+    /**
+     * Metodo toString convierte a String
+     */
+    public String toString(){
+        return data.toString();
+    }
 }

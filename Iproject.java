@@ -77,8 +77,8 @@ public class Iproject {
 		btnCor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String textoTotal = textArea.getText();				
-				String progra = textoTotal.replaceAll("\n"," ").replaceAll("\r"," ").replaceAll("\t", " ").replaceAll("  ", " ").replaceAll("   ", " ").replace("(","").replace(")","");
-				//System.out.println(progra);
+				String progra = textoTotal.replaceAll("\n"," ").replaceAll("\r"," ").replaceAll("\t", " ").replace("(", "( ").replace(")", " )").replaceAll("  ", " ").replaceAll("   ", " ");
+				System.out.println(progra);
 				Decode decode = new Decode(progra);
 				decode.interpret();
 			}

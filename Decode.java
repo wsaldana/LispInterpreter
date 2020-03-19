@@ -27,10 +27,10 @@ import java.util.TreeMap;
      */
     public Decode(String code){
         this.code = code; 
+        this.functions = new TreeMap<String, Stack<String>>();
         this.stack = tokenize();
         this.scope = new TreeMap<String,String>();
         this.scope.put("t", "true");
-        this.functions = new TreeMap<String, Stack<String>>();
     }
 
     /**
@@ -42,17 +42,57 @@ import java.util.TreeMap;
         }
     }
 
+
+
     /**
      * Separar y almacenar operaciones
      */
     public Stack<String> tokenize(){
-        String[] initialCode = this.code.split(" ");
+        String aa = this.code.replace("( ","").replace(" )","");
+        String[] initialCode = aa.split(" ");
+        //System.out.println(this.code.split(" "));
+        parenthesize(this.code.split(" "));
         Stack<String> tokenized = new myVector<String>();
         for(int i=initialCode.length-1; i>=0; i--){
             tokenized.push(initialCode[i]);
         }
         return tokenized;
     }
+
+
+
+    public String[] parenthesize(String[] initialCode){
+        int parentesis = 0;
+        Stack<String> function = new myVector<String>();
+        for(int i=0; i<initialCode.length; i++){
+            String token = initialCode[i];
+            if(token.equals("DEFUN")){
+                parentesis = 1;
+            }
+            if(parentesis > 0){
+                if(token.equals("(")){
+                    parentesis += 1;
+                }else if(token.equals(")")){
+                    parentesis -= 1;
+                }else{
+                    function.push(token);
+                }
+                initialCode[i] = "null";
+            }
+        }
+        String initialCodeString = "null";
+        for(int i=0; i<initialCode.length;i++){
+            initialCodeString += initialCode[i] + " ";
+        }
+        initialCodeString = initialCodeString.replaceAll("null", "");
+
+        System.out.println(function.toString());
+        this.functions.put("aaa", function);
+        
+        return initialCodeString.split(" ");
+    }
+
+
 
     /**
      * Verifica el tipo de instruccion y la ejecuta
@@ -107,5 +147,4 @@ import java.util.TreeMap;
         this.stack = a;
         return val;
     }
-
  }
