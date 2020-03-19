@@ -58,6 +58,6 @@ public class myVector<E> implements Stack<E>{
      * @return true si la lista esta vacia
      */
     public boolean empty(){
-        return !(data.size() < 0);
+        return !(data.size() > 0);
     }
 }
