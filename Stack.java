@@ -1,12 +1,12 @@
 /**
- * @author Walter Saldaña
- * @author Javier Cotto
- * @author Jose Gutierrez
- * 
  * Interfáz de un stack para una colección de datos
  * 
  * Referencias: 
  * Duane A. Bailey. (2007). Java Structures. 7ma edicion.
+ * @author Walter Saldaña
+ * @author Javier Cotto
+ * @author Jose Gutierrez
+ * 
  */
 
 public interface Stack<E>{
