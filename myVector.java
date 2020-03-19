@@ -67,4 +67,14 @@ public class myVector<E> implements Stack<E>{
     public String toString(){
         return data.toString();
     }
+	
+	/**
+     * @return El primer valor de la lista
+     * Retorna el primer valor de la lista y despues lo elimina
+     */
+    public E shift(){
+    	E value = data.get(size() - (size()-1));
+		data.remove(size() - (size()-1));
+		return value;
+    }
 }
