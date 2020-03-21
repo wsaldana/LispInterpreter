@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"<Unnamed>","c":"Stack","l":"empty()"},{"p":"<Unnamed>","c":"Stack","l":"peek()"},{"p":"<Unnamed>","c":"Stack","l":"pop()"},{"p":"<Unnamed>","c":"Stack","l":"push(E)"},{"p":"<Unnamed>","c":"Stack","l":"size()"}]
