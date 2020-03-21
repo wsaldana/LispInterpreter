@@ -27,10 +27,10 @@ import java.util.TreeMap;
      */
     public Decode(String code){
         this.code = code; 
-        this.functions = new TreeMap<String, Stack<String>>();
-        this.stack = tokenize();
         this.scope = new TreeMap<String,String>();
         this.scope.put("t", "true");
+        this.functions = new TreeMap<String, Stack<String>>();
+        this.stack = tokenize();
     }
 
     /**
@@ -50,8 +50,7 @@ import java.util.TreeMap;
     public Stack<String> tokenize(){
         String aa = this.code.replace("( ","").replace(" )","");
         String[] initialCode = aa.split(" ");
-        //System.out.println(this.code.split(" "));
-        parenthesize(this.code.split(" "));
+        initialCode = parenthesize(this.code.split(" "));
         Stack<String> tokenized = new myVector<String>();
         for(int i=initialCode.length-1; i>=0; i--){
             tokenized.push(initialCode[i]);
@@ -63,7 +62,7 @@ import java.util.TreeMap;
 
     public String[] parenthesize(String[] initialCode){
         int parentesis = 0;
-        Stack<String> function = new myVector<String>();
+        myVector<String> function = new myVector<String>();
         for(int i=0; i<initialCode.length; i++){
             String token = initialCode[i];
             if(token.equals("DEFUN")){
@@ -86,10 +85,25 @@ import java.util.TreeMap;
         }
         initialCodeString = initialCodeString.replaceAll("null", "");
 
-        System.out.println(function.toString());
-        this.functions.put("aaa", function);
-        
-        return initialCodeString.split(" ");
+        try {
+            function.shift();
+        String functionName = function.shift();
+        String parameter = function.shift();
+        this.scope.put(functionName+"var", "0");
+
+        myVector<String> finalFunction = new myVector<String>();
+        while(function.size() > 0){
+            String token = function.pop();
+            if(token.equals(parameter)){
+                finalFunction.push(functionName+"var");
+            }else{
+                finalFunction.push(token);
+            }
+        }
+        this.functions.put(functionName, finalFunction);  
+        } catch (Exception e) {}
+              
+        return initialCodeString.replace("( ","").replace(" )","").split(" ");
     }
 
 
@@ -119,7 +133,7 @@ import java.util.TreeMap;
                 return "0";
             }
         //COMPARADORES
-        }else if(pop.equals("=")){
+        }else if(pop.equals("=") || pop.equals("EQUAL")){
             val = String.valueOf(execute(a).equals((execute(a))));
         }else if(pop.equals("<")){
             val = String.valueOf(Double.parseDouble(execute(a)) < Double.parseDouble(execute(a)));
@@ -127,9 +141,14 @@ import java.util.TreeMap;
             val = String.valueOf(Double.parseDouble(execute(a)) > Double.parseDouble(execute(a)));
         }else if(pop.equals("COND")){
             if(execute(a).equals("true")){
-                execute(a);
-            }else{}
-            val = String.valueOf(execute(a).equals((execute(a))));
+                val = execute(a);
+            }else{val = "";}
+        }else if(pop.equals("ATOM")){
+            try {
+                val = String.valueOf(Double.parseDouble(a.pop()));
+            } catch (Exception e) {
+                val = " ";
+            }
         }else if(pop.equals("WRITE")){
             System.out.println(execute(a));
         }else if(pop.equals("SETQ")){
@@ -139,6 +158,7 @@ import java.util.TreeMap;
             if(this.scope.containsKey(pop)){
                 val = this.scope.get(pop);
             }else if(this.functions.containsKey(pop)){
+                this.scope.put(pop+"var", execute(a));
                 val = execute(this.functions.get(pop));
             }else{
                 val = pop;
