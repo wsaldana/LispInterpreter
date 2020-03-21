@@ -54,12 +54,13 @@ public class Iproject {
 		btnCargarArchivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-		            Scanner input = new Scanner(new File("C:\\Users\\Javier Cotto\\Desktop\\UVG Trabajos\\3er Semestre\\Estructura de datos\\Prueba.txt"));
+					//Colocar ruta de acceso para cargar el archivo
+		            Scanner input = new Scanner(new File("Descargas"));
 		            while (input.hasNextLine()) {
 		                String line = input.nextLine();
 		                textArea.append(line + "\n");
 		            }
-		            JOptionPane.showMessageDialog(null, "El archivo se ha cargado exit�samente:)");
+		            JOptionPane.showMessageDialog(null, "El archivo se ha cargado exitosamente:)");
 		            //System.out.println(textArea.getText());
 		            //("\n")
 		            input.close();
@@ -92,8 +93,8 @@ public class Iproject {
 					String texto = textArea.getText();				
 					String[] Code = texto.split("\n");
 					String contenido = "";
-					
-		            String ruta = "C:\\Users\\Javier Cotto\\Desktop\\UVG Trabajos\\3er Semestre\\Estructura de datos\\guardar.txt";
+					//Colocar ruta de acceso para guardar el archivo
+		            String ruta = "Descargas";
 		            for(int i=0; i<Code.length;i++) {
 		            contenido = contenido + Code[i] + "\n" ;
 		            }
